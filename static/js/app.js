@@ -1,4 +1,4 @@
-$(function() {
+/*$(function() {
 
     $('.dates #datepicker').datepicker({
         'format': 'dd/mm/yyyy',
@@ -7,7 +7,7 @@ $(function() {
 
 
 
-});
+});*/
 
 function onlynumber(evt) {
    var theEvent = evt || window.event;
