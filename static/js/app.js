@@ -1,14 +1,73 @@
-/*$(function() {
+$(function(){
+    //Executa a requisição quando o campo username perder o foco
+    $('#cpf').blur(function()
+    {
+        var cpf = $('#cpf').val().replace(/[^0-9]/g, '').toString();
 
-    $('.dates #datepicker').datepicker({
-        'format': 'dd/mm/yyyy',
-        'autoclose': true
+        if( cpf.length == 11 )
+        {
+            var v = [];
+
+            //Calcula o primeiro dígito de verificação.
+            v[0] = 1 * cpf[0] + 2 * cpf[1] + 3 * cpf[2];
+            v[0] += 4 * cpf[3] + 5 * cpf[4] + 6 * cpf[5];
+            v[0] += 7 * cpf[6] + 8 * cpf[7] + 9 * cpf[8];
+            v[0] = v[0] % 11;
+            v[0] = v[0] % 10;
+
+            //Calcula o segundo dígito de verificação.
+            v[1] = 1 * cpf[1] + 2 * cpf[2] + 3 * cpf[3];
+            v[1] += 4 * cpf[4] + 5 * cpf[5] + 6 * cpf[6];
+            v[1] += 7 * cpf[7] + 8 * cpf[8] + 9 * v[0];
+            v[1] = v[1] % 11;
+            v[1] = v[1] % 10;
+
+            //Retorna Verdadeiro se os dígitos de verificação são os esperados.
+            if ( (v[0] != cpf[9]) || (v[1] != cpf[10]) )
+            {
+                alert('CPF inválido: ' + cpf);
+
+                $('#cpf').val('');
+                $('#cpf').focus();
+            }
+        }
     });
+});
+$(function(){
+    //Executa a requisição quando o campo username perder o foco
+    $('#cpf1').blur(function()
+    {
+        var cpf = $('#cpf1').val().replace(/[^0-9]/g, '').toString();
 
+        if( cpf.length == 11 )
+        {
+            var v = [];
 
+            //Calcula o primeiro dígito de verificação.
+            v[0] = 1 * cpf[0] + 2 * cpf[1] + 3 * cpf[2];
+            v[0] += 4 * cpf[3] + 5 * cpf[4] + 6 * cpf[5];
+            v[0] += 7 * cpf[6] + 8 * cpf[7] + 9 * cpf[8];
+            v[0] = v[0] % 11;
+            v[0] = v[0] % 10;
 
-});*/
+            //Calcula o segundo dígito de verificação.
+            v[1] = 1 * cpf[1] + 2 * cpf[2] + 3 * cpf[3];
+            v[1] += 4 * cpf[4] + 5 * cpf[5] + 6 * cpf[6];
+            v[1] += 7 * cpf[7] + 8 * cpf[8] + 9 * v[0];
+            v[1] = v[1] % 11;
+            v[1] = v[1] % 10;
 
+            //Retorna Verdadeiro se os dígitos de verificação são os esperados.
+            if ( (v[0] != cpf[9]) || (v[1] != cpf[10]) )
+            {
+                alert('CPF inválido: ' + cpf);
+
+                $('#cpf1').val('');
+                $('#cpf1').focus();
+            }
+        }
+    });
+});
 function onlynumber(evt) {
    var theEvent = evt || window.event;
    var key = theEvent.keyCode || theEvent.which;
@@ -20,8 +79,14 @@ function onlynumber(evt) {
       if(theEvent.preventDefault) theEvent.preventDefault();
    }
 }
-    $(document).ready(function(){
+$(document).ready(function(){
     $('#celular').mask("(99) 99999-9999");
+});
+$(document).ready(function(){
+    $('#celular1').mask("(99) 99999-9999");
+});
+$(document).ready(function(){
+    $('#telefone_pessoa_convite').mask("(99) 99999-9999");
 });
 
 
@@ -34,9 +99,11 @@ function mascara(t, mask){
     }
  }
 $(document).ready(function(){
-		$("#cpf").mask("999.999.999-99");
-	});
-
+    $("#cpf").mask("999.999.999-99");
+});
+$(document).ready(function(){
+    $("#cpf1").mask("999.999.999-99");
+});
  /*function validaCPF(cpf)
   {
     var numeros, digitos, soma, i, resultado, digitos_iguais;
@@ -94,65 +161,130 @@ function validaCPF(cpf) {
 
 $(document).ready(function() {
 
-function limpa_formulário_cep() {
-    // Limpa valores do formulário de cep.
-    $("#logradouro").val("");
-    $("#bairro").val("");
-    $("#cidade").val("");
-    $("#estado").val("");
-   // $("#ibge").val("");
-}
+    function limpa_formulário_cep() {
+        // Limpa valores do formulário de cep.
+        $("#logradouro").val("");
+        $("#bairro").val("");
+        $("#cidade").val("");
+        $("#estado").val("");
+       // $("#ibge").val("");
+    }
 
-//Quando o campo cep perde o foco.
-$("#cep").blur(function() {
+    //Quando o campo cep perde o foco.
+    $("#cep").blur(function() {
 
-    //Nova variável "cep" somente com dígitos.
-    var cep = $(this).val().replace(/\D/g, '');
+        //Nova variável "cep" somente com dígitos.
+        var cep = $(this).val().replace(/\D/g, '');
 
-    //Verifica se campo cep possui valor informado.
-    if (cep != "") {
+        //Verifica se campo cep possui valor informado.
+        if (cep != "") {
 
-        //Expressão regular para validar o CEP.
-        var validacep = /^[0-9]{8}$/;
+            //Expressão regular para validar o CEP.
+            var validacep = /^[0-9]{8}$/;
 
-        //Valida o formato do CEP.
-        if(validacep.test(cep)) {
+            //Valida o formato do CEP.
+            if(validacep.test(cep)) {
 
-            //Preenche os campos com "..." enquanto consulta webservice.
-            $("#logradouro").val("...");
-            $("#bairro").val("...");
-            $("#cidade").val("...");
-            $("#estado").val("...");
-            //$("#ibge").val("...");
+                //Preenche os campos com "..." enquanto consulta webservice.
+                $("#logradouro").val("...");
+                $("#bairro").val("...");
+                $("#cidade").val("...");
+                $("#estado").val("...");
+                //$("#ibge").val("...");
 
-            //Consulta o webservice viacep.com.br/
-            $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+                //Consulta o webservice viacep.com.br/
+                $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
 
-                if (!("erro" in dados)) {
-                    //Atualiza os campos com os valores da consulta.
-                    $("#logradouro").val(dados.logradouro);
-                    $("#bairro").val(dados.bairro);
-                    $("#cidade").val(dados.localidade);
-                    $("#estado").val(dados.uf);
-                    $("#numero").focus();
-                    //$("#ibge").val(dados.ibge);
-                } //end if.
-                else {
-                    //CEP pesquisado não foi encontrado.
-                    limpa_formulário_cep();
-                    alert("CEP não encontrado.");
-                }
-            });
+                    if (!("erro" in dados)) {
+                        //Atualiza os campos com os valores da consulta.
+                        $("#logradouro").val(dados.logradouro);
+                        $("#bairro").val(dados.bairro);
+                        $("#cidade").val(dados.localidade);
+                        $("#estado").val(dados.uf);
+                        $("#numero").focus();
+                        //$("#ibge").val(dados.ibge);
+                    } //end if.
+                    else {
+                        //CEP pesquisado não foi encontrado.
+                        limpa_formulário_cep();
+                        alert("CEP não encontrado.");
+                    }
+                });
+            } //end if.
+            else {
+                //cep é inválido.
+                limpa_formulário_cep();
+                alert("Formato de CEP inválido.");
+            }
         } //end if.
         else {
-            //cep é inválido.
+            //cep sem valor, limpa formulário.
             limpa_formulário_cep();
-            alert("Formato de CEP inválido.");
         }
-    } //end if.
-    else {
-        //cep sem valor, limpa formulário.
-        limpa_formulário_cep();
-    }
+    });
 });
+
+$(document).ready(function() {
+
+    function limpa_formulário_cep() {
+        // Limpa valores do formulário de cep.
+        $("#logradouro1").val("");
+        $("#bairro1").val("");
+        $("#cidade1").val("");
+        $("#estado1").val("");
+       // $("#ibge").val("");
+    }
+
+    //Quando o campo cep perde o foco.
+    $("#cep1").blur(function() {
+
+        //Nova variável "cep" somente com dígitos.
+        var cep = $(this).val().replace(/\D/g, '');
+
+        //Verifica se campo cep possui valor informado.
+        if (cep != "") {
+
+            //Expressão regular para validar o CEP.
+            var validacep = /^[0-9]{8}$/;
+
+            //Valida o formato do CEP.
+            if(validacep.test(cep)) {
+
+                //Preenche os campos com "..." enquanto consulta webservice.
+                $("#logradouro1").val("...");
+                $("#bairro1").val("...");
+                $("#cidade1").val("...");
+                $("#estado1").val("...");
+                //$("#ibge").val("...");
+
+                //Consulta o webservice viacep.com.br/
+                $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+                    if (!("erro" in dados)) {
+                        //Atualiza os campos com os valores da consulta.
+                        $("#logradouro1").val(dados.logradouro);
+                        $("#bairro1").val(dados.bairro);
+                        $("#cidade1").val(dados.localidade);
+                        $("#estado1").val(dados.uf);
+                        $("#numero1").focus();
+                        //$("#ibge").val(dados.ibge);
+                    } //end if.
+                    else {
+                        //CEP pesquisado não foi encontrado.
+                        limpa_formulário_cep();
+                        alert("CEP não encontrado.");
+                    }
+                });
+            } //end if.
+            else {
+                //cep é inválido.
+                limpa_formulário_cep();
+                alert("Formato de CEP inválido.");
+            }
+        } //end if.
+        else {
+            //cep sem valor, limpa formulário.
+            limpa_formulário_cep();
+        }
+    });
 });
