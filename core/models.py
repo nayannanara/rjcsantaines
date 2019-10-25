@@ -4,6 +4,7 @@ from django.db import models
 class Encontreiro(models.Model):
     nome = models.CharField(max_length=60, null=False, blank=False, verbose_name='nome')
     email = models.EmailField(max_length=50, null=False, blank=False, verbose_name='email')
+    estado_civil = models.CharField(max_length=40, null=False, blank=False, default="", verbose_name='estado_civil')
     facebook = models.EmailField(max_length=50, null=False, blank=False, verbose_name='facebook')
     naturalidade = models.CharField(max_length=40, null=False, blank=False, verbose_name='naturalidade')
     cpf = models.CharField(unique=True, max_length=15, null=True, blank=False, verbose_name='cpf')
@@ -39,6 +40,7 @@ class Encontrista(models.Model):
     pessoas_moradia = models.CharField(max_length=60, null=False, blank=False, verbose_name='pessoas_moradia')
     telefones_urgencia = models.CharField(max_length=40, null=False, blank=False, verbose_name='telefones_urgencia')
     pessoa_convite = models.CharField(max_length=40, null=False, blank=False, verbose_name='pessoa_convite')
+    estado_civil = models.CharField(max_length=40, null=False, blank=False, default="", verbose_name='estado_civil')
     telefone_pessoa_convite = models.CharField(max_length=40, null=False, blank=False, verbose_name='telefone_pessoa_convite')
     pessoas_participando = models.CharField(max_length=5, null=False, blank=False, verbose_name='pessoas_participando')
     nome_pessoas_participando = models.CharField(max_length=60, null=False, blank=False, verbose_name='nome_pessoas_participando')
