@@ -5,5 +5,5 @@ urlpatterns =[
     path('', home, name='core_home'),
     path('encontreiro-novo', encontreiro_novo, name='core_encontreiro_novo'),
     path('encontrista-novo', encontrista_novo, name='core_encontrista_novo'),
-    path('login', login, name='core_login' )
+    path('login', login, name='core_login')
 ]

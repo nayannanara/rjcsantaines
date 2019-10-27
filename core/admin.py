@@ -8,13 +8,13 @@ from .models import(
 
 
 class EncontreiroAdmin(admin.ModelAdmin):
-    search_fields = ('nome', 'email')
-    list_display = ('nome', 'email')
+    search_fields = ('nome', 'cpf', 'email', 'data_nascimento', 'celular')
+    list_display = ('nome', 'cpf', 'email', 'data_nascimento', 'celular')
 
 
 class EncontristaAdmin(admin.ModelAdmin):
-    search_fields = ('nome', 'email', 'cpf')
-    list_display = ('nome', 'email', 'cpf')
+    search_fields = ('nome_apelido', 'cpf')
+    list_display = ('nome_apelido', 'cpf')
 
 
 admin.site.register(Encontreiro, EncontreiroAdmin)

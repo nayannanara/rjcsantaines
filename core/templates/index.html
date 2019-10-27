@@ -214,7 +214,8 @@
                 </div>
                 <div class="tab-content col-md-8" id="v-pills-tabContent">
                   <div class="tab-pane fade show active" id="encontreiro" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                       <form action="#" method="post">
+                       <form action="{% url 'core_encontreiro_novo' %}" method="post">
+                           {% csrf_token %}
                         <fieldset>
                             <legend>Dados Pessoais</legend>
                           <div class="form-row">
@@ -232,7 +233,7 @@
                                   <label for="cpf">CPF</label>
                                   <input type="text" class="form-control" id="cpf" name="cpf" maxlength="11" required>
                                 </div>
-                                  <div class="form-group col-md-4">
+                                <div class="form-group col-md-4">
                                   <label for="celular">Celular</label>
                                   <input type="text" class="form-control" name="celular" id="celular" placeholder="(00) 00000-0000" maxlength="15" required>
                                 </div>
@@ -240,51 +241,50 @@
                                     <label for="estado_civil">Estado Civil</label>
                                         <select class="form-control" id="estado_civil" name="estado_civil">
                                             <option value="">Selecione aqui</option>
-                                            <option value="01">Casado(a)</option>
-                                            <option value="02">Solteiro(a)</option>
-                                            <option value="03">Viúvo(a)</option>
-                                            <option value="04">Divorciado</option>
-                                            <option value="05">União estável</option>
+                                            <option value="Casado(a)">Casado(a)</option>
+                                            <option value="Solteiro(a)">Solteiro(a)</option>
+                                            <option value="Viúvo(a)">Viúvo(a)</option>
+                                            <option value="Divorciado">Divorciado</option>
+                                            <option value="União estável">União estável</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                  <label for="cep">CEP</label>
-                                  <input type="text" class="form-control" name="cep "id="cep" maxlength="10" onkeypress="mascara(this, '#####-###')">
+                                  <label for="cep_encontreiro">CEP</label>
+                                  <input type="text" class="form-control" name="cep_encontreiro" id="cep_encontreiro" maxlength="10" onkeypress="mascara(this, '#####-###')">
                                 </div>
                                 <div class="form-group col-md-6">
-                                  <label for="logradouro">Logradouro</label>
-                                  <input type="text" class="form-control" name="logradouro" id="logradouro" placeholder="Logradouro" maxlength="40" disabled="">
-                                </div>
-                              </div>
-
-                              <div class="form-row">
-                                <div class="form-group col-md-4">
-                                  <label for="numero">Número</label>
-                                  <input type="number" class="form-control" name="numero" id="numero" placeholder="Número">
-                                </div>
-                                <div class="form-group col-md-4">
-                                  <label for="complemento">Complemento</label>
-                                  <input type="text" class="form-control" name="complemento" id="complemento" placeholder="Complemento" maxlength="60">
-                                </div>
-                                <div class="form-group col-md-4">
-                                  <label for="bairro">Bairro</label>
-                                  <input type="text" class="form-control" name="bairro" id="bairro" placeholder="Bairro" maxlength="25" disabled="">
+                                  <label for="logradouro_encontreiro">Logradouro</label>
+                                  <input type="text" class="form-control" name="logradouro_encontreiro" id="logradouro_encontreiro" placeholder="Logradouro" maxlength="40">
                                 </div>
                               </div>
                               <div class="form-row">
                                 <div class="form-group col-md-4">
-                                  <label for="estado">Estado</label>
-                                  <input type="text" class="form-control" name="estado "id="estado" placeholder="Estado" disabled="">
+                                  <label for="numero_encontreiro">Número</label>
+                                  <input type="number" class="form-control" name="numero_encontreiro" id="numero_encontreiro" placeholder="Número">
                                 </div>
                                 <div class="form-group col-md-4">
-                                  <label for="cidade">Cidade</label>
-                                  <input type="text" class="form-control" name="cidade" id="cidade" placeholder="Cidade" disabled="">
+                                  <label for="complemento_encontreiro">Complemento</label>
+                                  <input type="text" class="form-control" name="complemento_encontreiro" id="complemento_encontreiro" placeholder="Complemento" maxlength="60">
                                 </div>
                                 <div class="form-group col-md-4">
-                                  <label for="cidade">Naturalidade</label>
-                                  <input type="text" class="form-control" name="naturalidade" id="naturalidade" placeholder="Ex: Caxias do Sul" maxlength="30" required>
+                                  <label for="bairro_encontreiro">Bairro</label>
+                                  <input type="text" class="form-control" name="bairro_encontreiro" id="bairro_encontreiro" placeholder="Bairro" maxlength="25">
+                                </div>
+                              </div>
+                              <div class="form-row">
+                                <div class="form-group col-md-4">
+                                  <label for="estado_encontreiro">Estado</label>
+                                  <input type="text" class="form-control" name="estado_encontreiro" id="estado_encontreiro" placeholder="Estado">
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <label for="cidade_encontreiro">Cidade</label>
+                                  <input type="text" class="form-control" name="cidade_encontreiro" id="cidade_encontreiro" placeholder="Cidade">
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <label for="naturalidade_encontreiro">Naturalidade</label>
+                                  <input type="text" class="form-control" name="naturalidade_encontreiro" id="naturalidade_encontreiro" placeholder="Ex: Caxias do Sul" maxlength="30" required>
                                 </div>
                               </div>
 
@@ -303,14 +303,14 @@
                             <legend>Dados complementares</legend>
                             <div class="form-row">
                                 <div class="form-group col-md-12">
-                                    <label for="frequentando_igreja">Você está frequentando assiduamente sua igreja?</label>
+                                    <label for="frequentando_igreja_enc">Você está frequentando assiduamente sua igreja?</label>
                                     <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="frequentando_igreja" value="Sim" checked>
-                                    <label class="form-check-label" for="frequentando_igreja">Sim</label>
+                                    <input class="form-check-input" type="radio" name="frequentando_igreja_enc" value="Sim" checked>
+                                    <label class="form-check-label" for="frequentando_igreja_enc">Sim</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="frequentando_igreja" value="Não">
-                                    <label class="form-check-label" for="frequentando_igreja">Não</label>
+                                    <input class="form-check-input" type="radio" name="frequentando_igreja_enc" value="Não">
+                                    <label class="form-check-label" for="frequentando_igreja_enc">Não</label>
                                 </div>
                                 </div>
                             </div>
@@ -320,14 +320,14 @@
                                   <input type="text" class="form-control" name="nome_igreja" id="nome_igreja" placeholder="Ex: IASD Central Palmeira" maxlength="50">
                                 </div>
                                 <div class="form-group col-md-6">
-                                  <label for="local_trabalho">Local de trabalho</label>
-                                  <input type="text" class="form-control" name="local_trabalho" id="local_trabalho" placeholder="Ex: Loja São Francisco" maxlength="50" required>
+                                  <label for="local_trabalho_enc">Local de trabalho</label>
+                                  <input type="text" class="form-control" name="local_trabalho_enc" id="local_trabalho_enc" placeholder="Ex: Loja São Francisco" maxlength="50" required>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                  <label for="escolaridade">Escolaridade</label>
-                                    <select class="form-control" id="escolaridade" name="escolaridade">
+                                  <label for="escolaridade_enc">Escolaridade</label>
+                                    <select class="form-control" id="escolaridade_enc" name="escolaridade_enc">
                                       <option value="">Selecione aqui</option>
                                       <option value="Ensino médio completo ou em andamento">Ensino médio completo ou em andamento</option>
                                       <option value="Ensino médio incompleto">Ensino médio incompleto</option>
@@ -337,18 +337,18 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
-                                  <label for="igreja">Curso</label>
-                                  <input type="text" class="form-control" name="curso" id="curso" placeholder="Ex: Gastronomia" maxlength="50" required>
+                                  <label for="curso_encontreiro">Curso</label>
+                                  <input type="text" class="form-control" name="curso_encontreiro" id="curso_encontreiro" placeholder="Ex: Gastronomia" maxlength="50" required>
                                 </div>
                                 </div>
                                  <div class="form-row">
                                     <div class="form-group col-md-8">
-                                      <label for="pessoa_convite">Quem o convidou para o RJC?</label>
-                                      <input type="text" class="form-control" name="pessoa_convite" id="pessoa_convite" placeholder="Fulano de tal" maxlength="50" required>
+                                      <label for="pessoa_convite_enc">Quem o convidou para o RJC?</label>
+                                      <input type="text" class="form-control" name="pessoa_convite_enc" id="pessoa_convite_enc" placeholder="Fulano de tal" maxlength="50" required>
                                     </div>
-                                    <div class="form-group col-md-4 dates">
+                                    <div class="form-group col-md-4">
                                         <label for="ano_participacao">Ano</label>
-                                        <input type="year" class="form-control" name="ano_participacao" id="ano_participacao" placeholder="2010" maxlength="50" onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode))) return true; else return false;" required>
+                                        <input type="text" class="form-control" name="ano_participacao" id="ano_participacao" placeholder="2010" maxlength="50" onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode))) return true; else return false;" required>
                                       </div>
                                     </div>
                                 <div class="form-row">
@@ -358,7 +358,7 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                       <label for="qtd_participacoes">Quantidade de participações como encontreiro</label>
-                                      <input type="number" class="form-control" name="qtd_participacoes" id="qtd_participacoes" required>
+                                      <input type="text" class="form-control" name="qtd_participacoes" id="qtd_participacoes" onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode))) return true; else return false;" required>
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -371,7 +371,8 @@
                     </div>
                   <div class="tab-pane fade" id="encontrista" role="tabpanel" aria-labelledby="v-pills-profile-tab">
 
-                     <form action="#" method="post">
+                     <form action="{% url 'core_encontrista_novo' %}" method="post">
+                         {% csrf_token %}
                         <fieldset>
                             <legend>Dados Pessoais</legend>
                           <div class="form-row">
@@ -380,8 +381,8 @@
                               <input type="text" class="form-control" name="nome_apelido" id="nome_apelido" placeholder="Nome sobrenome" maxlength="60" required>
                             </div>
                              <div class="form-group col-md-4 dates">
-                                <label for="data_nascimento">Data de nascimento</label>
-                                <input type="date" class="form-control" name="data_nascimento" accesskey=""autocomplete="off" required>
+                                <label for="data_nascimento_enc">Data de nascimento</label>
+                                <input type="date" class="form-control" name="data_nascimento_enc" id="data_nascimento_enc" accesskey=""autocomplete="off" required>
                               </div>
                             </div>
                             <div class="form-row">
@@ -408,11 +409,11 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                   <label for="cep">CEP</label>
-                                  <input type="text" class="form-control" name="cep "id="cep1" maxlength="10" onkeypress="mascara(this, '#####-###')">
+                                  <input type="text" class="form-control" name="cep" id="cep1" maxlength="10" onkeypress="mascara(this, '#####-###')">
                                 </div>
                                 <div class="form-group col-md-6">
                                   <label for="logradouro">Logradouro</label>
-                                  <input type="text" class="form-control" name="logradouro" id="logradouro1" placeholder="Logradouro" maxlength="40" disabled="">
+                                  <input type="text" class="form-control" name="logradouro" id="logradouro1" placeholder="Logradouro" maxlength="40">
                                 </div>
                               </div>
 
@@ -426,28 +427,28 @@
                                   <input type="text" class="form-control" name="complemento" id="complemento" placeholder="Complemento" maxlength="60">
                                 </div>
                                 <div class="form-group col-md-4">
-                                  <label for="bairro">Bairro</label>
-                                  <input type="text" class="form-control" name="bairro" id="bairro1" placeholder="Bairro" maxlength="25" disabled="">
+                                  <label for="bairro1">Bairro</label>
+                                  <input type="text" class="form-control" name="bairro" id="bairro1" placeholder="Bairro" maxlength="25" >
                                 </div>
                               </div>
                               <div class="form-row">
                                 <div class="form-group col-md-4">
-                                  <label for="estado">Estado</label>
-                                  <input type="text" class="form-control" name="estado "id="estado1" placeholder="Estado" disabled="">
+                                  <label for="estado1">Estado</label>
+                                  <input type="text" class="form-control" name="estado" id="estado1" placeholder="Estado">
                                 </div>
                                 <div class="form-group col-md-4">
-                                  <label for="cidade">Cidade</label>
-                                  <input type="text" class="form-control" name="cidade" id="cidade1" placeholder="Cidade" disabled="">
+                                  <label for="cidade1">Cidade</label>
+                                  <input type="text" class="form-control" name="cidade" id="cidade1" placeholder="Cidade" >
                                 </div>
                                 <div class="form-group col-md-4">
-                                  <label for="cidade">Naturalidade</label>
+                                  <label for="naturalidade">Naturalidade</label>
                                   <input type="text" class="form-control" name="naturalidade" id="naturalidade" placeholder="Ex: Caxias do Sul" maxlength="30" required>
                                 </div>
                               </div>
 
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="inputAddress">Email</label>
+                                    <label for="email">Email</label>
                                     <input type="email" class="form-control" id="email" placeholder="exemplo@exemplo.com" name="email" maxlength="40" required>
                                 </div>
                               <div class="form-group col-md-6">
@@ -537,7 +538,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
-                                  <label for="igreja">Curso</label>
+                                  <label for="curso">Curso</label>
                                   <input type="text" class="form-control" name="curso" id="curso" placeholder="Ex: Gastronomia" maxlength="50" required>
                                 </div>
                                 </div>
@@ -581,8 +582,8 @@
                                       <input type="text" class="form-control" name="telefones_urgencia" id="telefones_urgencia" placeholder="Ex: 9 9999-9999" maxlength="60" required>
                                     </div>
                                     <div class="form-group col-md-4">
-                                      <label for="pessoa_convite">Quem o convidou para o RJC?</label>
-                                      <input type="text" class="form-control" name="pessoa_convite" id="pessoa_convite" placeholder="Fulano de tal" maxlength="50" required>
+                                      <label for="pessoa_convite_enct">Quem o convidou para o RJC?</label>
+                                      <input type="text" class="form-control" name="pessoa_convite_enct" id="pessoa_convite_enct" placeholder="Fulano de tal" maxlength="50" required>
                                     </div>
                                     <div class="form-group col-md-4">
                                       <label for="telefone_pessoa_convite">Telefone?</label>
@@ -598,7 +599,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                       <label for="pergunta_jesus">Quem é Jesus Cristo para você?</label>
-                                        <textarea type="text" class="form-control" name="pergunta_jesus" id="pergunta_jesus"required></textarea>
+                                        <textarea type="text" class="form-control" name="pergunta_jesus" id="pergunta_jesus" required></textarea>
                                     </div>
                                 </div>
                         </fieldset>

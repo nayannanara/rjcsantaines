@@ -163,15 +163,15 @@ $(document).ready(function() {
 
     function limpa_formulário_cep() {
         // Limpa valores do formulário de cep.
-        $("#logradouro").val("");
-        $("#bairro").val("");
-        $("#cidade").val("");
-        $("#estado").val("");
+        $("#logradouro_encontreiro").val("");
+        $("#bairro_encontreiro").val("");
+        $("#cidade_encontreiro").val("");
+        $("#estado_encontreiro").val("");
        // $("#ibge").val("");
     }
 
     //Quando o campo cep perde o foco.
-    $("#cep").blur(function() {
+    $("#cep_encontreiro").blur(function() {
 
         //Nova variável "cep" somente com dígitos.
         var cep = $(this).val().replace(/\D/g, '');
@@ -186,10 +186,10 @@ $(document).ready(function() {
             if(validacep.test(cep)) {
 
                 //Preenche os campos com "..." enquanto consulta webservice.
-                $("#logradouro").val("...");
-                $("#bairro").val("...");
-                $("#cidade").val("...");
-                $("#estado").val("...");
+                $("#logradouro_encontreiro").val("...");
+                $("#bairro_encontreiro").val("...");
+                $("#cidade_encontreiro").val("...");
+                $("#estado_encontreiro").val("...");
                 //$("#ibge").val("...");
 
                 //Consulta o webservice viacep.com.br/
@@ -197,11 +197,11 @@ $(document).ready(function() {
 
                     if (!("erro" in dados)) {
                         //Atualiza os campos com os valores da consulta.
-                        $("#logradouro").val(dados.logradouro);
-                        $("#bairro").val(dados.bairro);
-                        $("#cidade").val(dados.localidade);
-                        $("#estado").val(dados.uf);
-                        $("#numero").focus();
+                        $("#logradouro_encontreiro").val(dados.logradouro);
+                        $("#bairro_encontreiro").val(dados.bairro);
+                        $("#cidade_encontreiro").val(dados.localidade);
+                        $("#estado_encontreiro").val(dados.uf);
+                        $("#numero_encontreiro").focus();
                         //$("#ibge").val(dados.ibge);
                     } //end if.
                     else {
