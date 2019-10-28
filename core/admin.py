@@ -13,8 +13,8 @@ class EncontreiroAdmin(admin.ModelAdmin):
 
 
 class EncontristaAdmin(admin.ModelAdmin):
-    search_fields = ('nome_apelido', 'cpf')
-    list_display = ('nome_apelido', 'cpf')
+    search_fields = ('nome_apelido', 'cpf','email', 'data_nascimento_enc', 'celular')
+    list_display = ('nome_apelido', 'cpf', 'email', 'data_nascimento_enc', 'celular')
 
 
 admin.site.register(Encontreiro, EncontreiroAdmin)
