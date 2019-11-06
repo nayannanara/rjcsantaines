@@ -34,6 +34,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
+    'produtos',
+    'accounts',
+    'checkout',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -45,6 +49,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ROOT_URLCONF = 'inscricoes.urls'
 
@@ -101,9 +107,36 @@ USE_L10N = True
 
 USE_TZ = True
 
+EMAIL_HOST = ''
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'nayanna501@gmail.com'
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
+LOGIN_URL = 'core_login'
+LOGIN_REDIRECT_URL = 'core_home'
+LOGIN_URL = 'core_logout'
+AUTH_USER_MODEL = 'accounts.User'
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'accounts.backends.ModelBackend',
+)
+
+# Messages
+from django.contrib.messages import constants as messages_constants
+MESSAGE_TAGS = {
+    messages_constants.DEBUG: 'debug',
+    messages_constants.INFO: 'info',
+    messages_constants.SUCCESS: 'success',
+    messages_constants.WARNING: 'warning',
+    messages_constants.ERROR: 'danger',
+}
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
 
 STATIC_URL = '/static/'
 

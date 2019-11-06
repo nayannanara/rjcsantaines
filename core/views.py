@@ -1,11 +1,33 @@
 from django.shortcuts import render, redirect
-from .forms import EncontreiroForm, EncontristaForm
+from .forms import EncontreiroForm, EncontristaForm, ContatoForm
+from django.views.generic import CreateView
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import get_user_model
+from django.contrib import messages
 
-from .models import *
+
+User = get_user_model()
 
 
 def home(request):
     return render(request, 'index.html')
+
+
+def contato(request):
+    success = False
+    form = ContatoForm(request.POST or None)
+    if form.is_valid():
+        #form.save()
+        form.send_main()
+        success = True
+    elif request.method == 'POST':
+        messages.error(request, 'Formulário inválido')
+    context = {
+        'form': form,
+        'success': success,
+        }
+
+    return render(request, 'contato.html', context)
 
 
 def encontreiro_novo(request):
@@ -23,5 +45,8 @@ def encontrista_novo(request):
     return redirect('core_home')
 
 
-def login(request):
+def login_admin(request):
     return redirect('admin/')
+
+
+

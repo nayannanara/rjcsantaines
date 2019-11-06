@@ -1,0 +1,19 @@
+<div class="col-sm-12 col-md-6 col-12" id="cardevento">
+    <div class="card bg-light mb-3" style="max-width: 19rem; margin: 0 auto">
+        <div class="card-header"><a href="{{ dados.get_absolute_url }}" style="text-decoration:none;color:#fff;">
+            <h5><b><center>{{ dados.nome }}</center></b></h5></a></div>
+      <div class="card-body">
+          <p class="card-text">{{ dados.descricao }}</p>
+          <p class="card-text">Valor: R$ {{ dados.preco }}</p>
+          <div class="row">
+              <div class="col-md-6">
+                  <a href="#" class="card-link" style="color: blue"><b>Detalhes da compra</b></a>
+              </div>
+              <div class="col-md-6">
+                  <a href="{% url 'checkout:create_cartitem' dados.slug %}" class="card-link" style="color: blue"><b>Adicionar ao carrinho</b></a>
+              </div>
+          </div>
+
+      </div>
+    </div>
+</div>

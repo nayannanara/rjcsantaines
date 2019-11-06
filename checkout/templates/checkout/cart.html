@@ -1,0 +1,60 @@
+{% extends "menu.html" %}
+
+{% load widget_tweaks %}
+
+{% block title %}
+Carrinho de Compras
+{% endblock %}
+
+{% block container %}
+<section class="container">
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'core_home' %}">Inicio</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Carrinho de compras</li>
+    <!--<li class="breadcrumb-item"><a href="#">Carrinho de compras</a></li>-->
+    <!--<li class="breadcrumb-item active" aria-current="page">Data</li>-->
+  </ol>
+</nav>
+<div class="page-header">
+    <h3>Carrinho de Compras</h3>
+    <hr>
+</div>
+<div class="row">
+    <div class="col-md-12 col-md-offset-2">
+        <form class="" action="" method="post">
+            {% csrf_token %}
+            {{ formset.management_form }}
+            <table class="table table-bordered">
+                <thead>
+                    <th>CÓD</th>
+                    <th>Inscrição</th>
+                    <th>Preço</th>
+                    <th style="width: 10%;">Quantidade</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    {% for form in formset %}
+                    <tr>
+                        <td>{{ form.instance.inscricao.pk }}</td>
+                        <td>{{ form.instance.inscricao }}</td>
+                        <td>R$ {{ form.instance.price|floatformat:"2" }}</td>
+                        <td>{% render_field form.quantity class='form-control' %} </td>
+                        <td class="text-center">
+                            <button value="on" type="submit" name="{{ form.DELETE.html_name }}" class="btn btn-danger btn-sm">remover</button>
+                            {{ form.id }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <p class="text-right">
+                <a href="{% url 'produtos:lista_inscricoes' %}" class="pull-left btn btn-warning">Continuar Compras</a>
+                <button type="submit" class="btn btn-primary" name="button">Atualizar Carrinho</button></li>
+                <a href="#" class="btn btn-success">Finalizar Compra</a>
+            </p>
+        </form>
+    </div>
+</div>
+</section>
+{% endblock %}

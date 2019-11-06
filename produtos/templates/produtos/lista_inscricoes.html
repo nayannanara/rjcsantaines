@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Inscrições | {{ block.super }}
+{% endblock%}
+
+
+{% block container %}
+    <section class="container">
+        <div id="inscricoes">
+            <h2><b>Inscrições</b></h2>
+            <hr>
+        </div>
+        <div class="row">
+            {% for dados in lista_inscricoes %}
+            {% include "produtos/_inscricao.html" %}
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

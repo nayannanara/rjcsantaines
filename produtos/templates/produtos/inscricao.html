@@ -1,0 +1,188 @@
+{% extends "menu.html" %}
+
+{% block title %}
+    Inscrição {{ inscricao }} | {{ block.super }}
+{% endblock %}
+
+{% block container %}
+<section class="container geral">
+        <div id="inscricoes">
+            <h3><b>INSCRIÇÕES - {{ inscricao }}</b></h3>
+            <hr>
+            <p class="col-md-4">{{ inscricao.descricao }} - R$ {{ inscricao.preco }}</p>
+            <!--<div class="row" id="row-inscricao">
+               <div class="nav flex-column nav-pills col-md-4" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                  <a class="nav-link active" id="inscricao-encontreiro" data-toggle="pill" href="#encontreiro" role="tab" aria-controls="v-pills-home" aria-selected="true">Encontreiro</a>
+                  <a class="nav-link" id="inscricao-encontrista" data-toggle="pill" href="#encontrista" role="tab" aria-controls="v-pills-profile" aria-selected="false">Encontrista</a>
+                </div>
+                <div class="tab-content col-md-8" id="v-pills-tabContent">-->
+                  <div class="tab-pane fade show active col-md-6" id="encontreiro" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                       <form action="{% url 'core_encontreiro_novo' %}" method="post">
+                           {% csrf_token %}
+                        <fieldset>
+                            <legend>Dados Pessoais</legend>
+                          <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <label for="nome">Nome completo</label>
+                              <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome completo" maxlength="60" required>
+                            </div>
+                            <div class="form-group col-md-6 dates">
+                                <label for="data_nascimento">Data de nascimento</label>
+                                <input type="date" class="form-control" name="data_nascimento" accesskey=""autocomplete="off" required>
+                              </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                  <label for="cpf">CPF</label>
+                                  <input type="text" class="form-control" id="cpf" name="cpf" maxlength="11" required>
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <label for="celular">Celular</label>
+                                  <input type="text" class="form-control" name="celular" id="celular" placeholder="(00) 00000-0000" maxlength="15" required>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="estado_civil">Estado Civil</label>
+                                        <select class="form-control" id="estado_civil" name="estado_civil">
+                                            <option value="">Selecione aqui</option>
+                                            <option value="Casado(a)">Casado(a)</option>
+                                            <option value="Solteiro(a)">Solteiro(a)</option>
+                                            <option value="Viúvo(a)">Viúvo(a)</option>
+                                            <option value="Divorciado">Divorciado</option>
+                                            <option value="União estável">União estável</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <label for="cep_encontreiro">CEP</label>
+                                  <input type="text" class="form-control" name="cep_encontreiro" id="cep_encontreiro" maxlength="10" onkeypress="mascara(this, '#####-###')">
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <label for="logradouro_encontreiro">Logradouro</label>
+                                  <input type="text" class="form-control" name="logradouro_encontreiro" id="logradouro_encontreiro" placeholder="Logradouro" readonly maxlength="40">
+                                </div>
+                              </div>
+                              <div class="form-row">
+                                <div class="form-group col-md-4">
+                                  <label for="numero_encontreiro">Número</label>
+                                  <input type="number" class="form-control" name="numero_encontreiro" id="numero_encontreiro" placeholder="Número">
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <label for="complemento_encontreiro">Complemento</label>
+                                  <input type="text" class="form-control" name="complemento_encontreiro" id="complemento_encontreiro" placeholder="Complemento" maxlength="60">
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <label for="bairro_encontreiro">Bairro</label>
+                                  <input type="text" class="form-control" name="bairro_encontreiro" id="bairro_encontreiro" placeholder="Bairro" maxlength="25" readonly>
+                                </div>
+                              </div>
+                              <div class="form-row">
+                                <div class="form-group col-md-4">
+                                  <label for="estado_encontreiro">Estado</label>
+                                  <input type="text" class="form-control" name="estado_encontreiro" id="estado_encontreiro" placeholder="Estado" readonly>
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <label for="cidade_encontreiro">Cidade</label>
+                                  <input type="text" class="form-control" name="cidade_encontreiro" id="cidade_encontreiro" placeholder="Cidade" readonly>
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <label for="naturalidade_encontreiro">Naturalidade</label>
+                                  <input type="text" class="form-control" name="naturalidade_encontreiro" id="naturalidade_encontreiro" placeholder="Ex: Caxias do Sul" maxlength="30" required>
+                                </div>
+                              </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" placeholder="exemplo@exemplo.com" name="email" maxlength="40" required>
+                                </div>
+                              <div class="form-group col-md-6">
+                                <label for="facebook">Facebook</label>
+                                <input type="text" class="form-control" name="facebook" placeholder="Ex: Fulano de tal">
+                              </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Dados complementares</legend>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="frequentando_igreja_enc">Você está frequentando assiduamente sua igreja?</label>
+                                    <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="frequentando_igreja_enc" value="Sim" checked>
+                                    <label class="form-check-label" for="frequentando_igreja_enc">Sim</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="frequentando_igreja_enc" value="Não">
+                                    <label class="form-check-label" for="frequentando_igreja_enc">Não</label>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <label for="nome_igreja">Igreja</label>
+                                  <input type="text" class="form-control" name="nome_igreja" id="nome_igreja" placeholder="Ex: IASD Central Palmeira" maxlength="50">
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <label for="local_trabalho_enc">Local de trabalho</label>
+                                  <input type="text" class="form-control" name="local_trabalho_enc" id="local_trabalho_enc" placeholder="Ex: Loja São Francisco" maxlength="50" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <label for="escolaridade_enc">Escolaridade</label>
+                                    <select class="form-control" id="escolaridade_enc" name="escolaridade_enc">
+                                      <option value="">Selecione aqui</option>
+                                      <option value="Ensino médio completo ou em andamento">Ensino médio completo ou em andamento</option>
+                                      <option value="Ensino médio incompleto">Ensino médio incompleto</option>
+                                      <option value="Curso técnico">Curso técnico</option>
+                                      <option value="Ensino superior completo ou em andamento">Ensino superior completo ou em andamento</option>
+                                      <option value="Ensino superior incompleto">Ensino superior incompleto</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <label for="curso_encontreiro">Curso</label>
+                                  <input type="text" class="form-control" name="curso_encontreiro" id="curso_encontreiro" placeholder="Ex: Gastronomia" maxlength="50" required>
+                                </div>
+                                </div>
+                                 <div class="form-row">
+                                    <div class="form-group col-md-8">
+                                      <label for="pessoa_convite_enc">Quem o convidou para o RJC?</label>
+                                      <input type="text" class="form-control" name="pessoa_convite_enc" id="pessoa_convite_enc" placeholder="Fulano de tal" maxlength="50" required>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="ano_participacao">Ano</label>
+                                        <input type="text" class="form-control" name="ano_participacao" id="ano_participacao" placeholder="2010" maxlength="50" onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode))) return true; else return false;" required>
+                                      </div>
+                                    </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                      <label for="equipes_trab">Cite duas equipes que já trabalhou</label>
+                                      <input type="text" class="form-control" name="equipes_trab" id="equipes_trab" placeholder="Ex: Equipe X e Equipe Y" maxlength="60" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                      <label for="qtd_participacoes">Quantidade de participações</label>
+                                      <input type="text" class="form-control" name="qtd_participacoes" id="qtd_participacoes" onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode))) return true; else return false;" required>
+                                    </div>
+                                </div>
+
+                        </fieldset>
+                           <div class="row">
+                               <div class="col-md-6">
+                                  <button type="submit" class="btn btn-primary">Inscrever-se</button>
+                               </div>
+                                <div class="col-md-6">
+                                   <button type="submit" class="btn btn-primary">Adicionar ao carrinho</button>
+                                </div>
+                           </div>
+
+
+                    </form>
+
+                    </div>
+                  <div class="tab-pane fade" id="encontrista" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                  </div>
+                </div>
+            </div>
+        </div>
+</section>
+{% endblock %}
