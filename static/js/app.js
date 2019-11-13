@@ -304,3 +304,8 @@ $(window).scroll(function() {
     $('.navbar').removeClass('onTop');
   }
 });
+$(document).ready(function(){
+  $(".card").click(function(){
+    $(this).toggleClass("flipped");
+  });
+});

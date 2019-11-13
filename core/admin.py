@@ -3,7 +3,8 @@ from .models import(
     Encontreiro,
     Encontrista,
     Equipe,
-    Circulo
+    Circulo,
+    Contato
 )
 from produtos.models import Inscricao
 
@@ -30,4 +31,5 @@ admin.site.register(Encontreiro, EncontreiroAdmin)
 admin.site.register(Encontrista, EncontristaAdmin)
 admin.site.register(Equipe)
 admin.site.register(Circulo)
+admin.site.register(Contato)
 admin.site.register(Inscricao, InscricaoAdmin)

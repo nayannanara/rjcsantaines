@@ -23,7 +23,9 @@ class ContatoForm(forms.Form):
     celular = forms.CharField(label='Celular')
     mensagem = forms.CharField(label='Mensagem', widget=forms.Textarea)
 
-    def send_main(self):
+
+
+    """ def send_main(self):
         nome = self.cleaned_data['nome']
         email = self.cleaned_data['email']
         celular = self.cleaned_data['celular']
@@ -32,11 +34,11 @@ class ContatoForm(forms.Form):
         send_mail(
             'Contato RJC - Santa Inês', msg, settings.DEFAULT_FROM_EMAIL,
             [settings.DEFAULT_FROM_EMAIL]
-        )
+
 
     #def __init__(self, *args, **kwargs):
         #super(ContatoForm, self).__init__(*args, **kwargs)
         #self.fields['nome'].widget.attrs['class'] = 'form-control'
         #self.fields['email'].widget.attrs['class'] = 'form-control'
         #self.fields['celular'].widget.attrs['class'] = 'form-control'
-        #self.fields['mensagem'].widget.attrs['class'] = 'form-control'
+        #self.fields['mensagem'].widget.attrs['class'] = 'form-control'"""

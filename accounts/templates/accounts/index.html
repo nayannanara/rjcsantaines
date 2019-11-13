@@ -7,10 +7,10 @@
 
 {% block container %}
 <section class="container">
-<div class="container-fluid margin-top geral">
+<div class="container-fluid margin-top conta">
     <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'core_home' %}">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'accounts:accounts_index' %}">Inicio</a></li>
       <li class="breadcrumb-item active" aria-current="page">Minha conta</li>
     <!--<li class="breadcrumb-item"><a href="#">Carrinho de compras</a></li>-->
     <!--<li class="breadcrumb-item active" aria-current="page">Data</li>-->
@@ -18,19 +18,22 @@
     </nav>
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 dados">
             <div class="list-group">
-              <a href="#" class="list-group-item active">Minha Conta</a>
+              <a href="{% url 'accounts:accounts_index' %}" class="list-group-item active">Minha Conta</a>
               <a href="{% url 'accounts:accounts_update_user' %}" class="list-group-item">Alterar Dados</a>
               <a href="{% url 'accounts:accounts_update_password' %}" class="list-group-item">Alterar Senha</a>
+                <a href="{% url 'checkout:order_list' %}" class="list-group-item">Meus Pedidos</a>
             </div>
         </div>
-        <div class="container-fluid col-md-8 geral">
+        <div class="container-fluid col-md-8 dados">
             {% block accounts_container %}
                 <h2>Bem vindo {{ user }}</h2>
+                <hr>
             {% endblock %}
         </div>
     </div>
 </div>
+    <div style="margin-top: 170px;"></div>
 </section>
 {% endblock %}

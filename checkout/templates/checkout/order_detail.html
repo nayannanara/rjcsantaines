@@ -1,0 +1,48 @@
+{% extends "accounts/index.html" %}
+
+{% block title %}
+Pedido #{{ order.pk }}
+{% endblock %}
+
+{% block accounts_container %}
+<h2>Pedido #{{ order.pk }}</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Total</th>
+            <th>Situação</th>
+            <th>Data</th>
+            <th>Meios de pagamento</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ object.total|floatformat:"2" }}</td>
+            <td>{{ object.get_status_display }}</td>
+            <td>{{ object.created|date:"d/m/Y H:i" }}</td>
+            <td>{{ object.get_payment_option_display }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Itens do Pedido</h3>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Produto</th>
+            <th>Quantidade</th>
+            <th>Preço</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for item in object.items.all %}
+        <tr>
+            <td>{{ item.product }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>R$ {{ item.price|floatformat:"2" }}</td>
+        </tr>
+    </tbody>
+    {% endfor %}
+</table>
+
+{% endblock %}

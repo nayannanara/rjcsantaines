@@ -1,9 +1,28 @@
 @import url(//fonts.googleapis.com/css?family=Lato:300:400);
-
+.navbar-light .navbar-toggler-icon{
+ background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E") !important;
+}
+#cardevento{
+    border: 1px solid #f2f3f5 !important;
+    margin-top: 50px;
+}
+.conta{
+    margin-top: 80px;
+}
+.dados{
+    margin-top: 30px;
+}
 body, html {
     font-family: 'Lato', Georgia, sans-serif, Helvetica !important;
-    height:100% !important;
-    min-height: 100%;
+    height: auto; !important;
+}
+#menu{
+    background-color: #0d4d54 !important;
+}
+.barra{
+    background-color: #0d4d54 !important;
+    border-color: #0d4d54 !important;
+    color: #fff !important;
 }
 
 h1 {
@@ -62,7 +81,6 @@ p {
   position:relative;
   height:20vh;
   text-align:center;
-  background-color: white;
 }
 
 /* Animation */
@@ -207,11 +225,6 @@ hr{
     width: 100% !important;
     background-color: green;
 }
-*  {
-    margin:0;
-    padding:0;
-}
-
 #rodapeinicial p{
     font-size: 1em !important;
     padding-top: 10px;
@@ -346,17 +359,25 @@ i {
 }
 
 .container .card .face.face2 .content h3 {
-    margin: 0 0 10px 0;
+    margin: 7px 0 10px 0;
     padding: 0;
     color: #fff;
     font-size: 24px;
     text-align: center;
     color: #414141;
 } 
+.btn-info{
+    background-color: #0d4d54 !important;
+    border-color: #0d4d54 !important;
+}
+.btn-info:hover{
+    background-color: #1e7078 !important;
+    border-color: none !important;
+}
 
 .container a {
     text-decoration: none;
-    color: #414141;
+    /*color: #414141;*/
 }
 .svg-icones {
     position: absolute;
@@ -368,12 +389,9 @@ i {
     color: #fff;
     filter: sepia(100%);
 }
-#cardevento{
-    margin-top: 50px;
-}
+
 .card-header{
-    background-color: blue !important;
-    color: #fff !important;
+    color: #000 !important;
 }
 .form-horizontal{
     margin-top: 50px !important;
@@ -424,4 +442,3 @@ i {
 	  border-top-left-radius: 0;
 	  border-top-right-radius: 0;
 	}
-}

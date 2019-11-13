@@ -29,7 +29,7 @@
 <section class="container">
     <div class="wrapper">
     <form class="form-signin" method="post">
-       {% csrf_token %}
+
         {% for error in form.non_field_errors %}
 	        <div class="alert alert-danger" role="alert">
 		        {{ error }}

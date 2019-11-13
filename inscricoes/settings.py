@@ -48,6 +48,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'checkout.middleware.cart_item_middleware',
+
 ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -107,12 +109,19 @@ USE_L10N = True
 
 USE_TZ = True
 
-EMAIL_HOST = ''
+"""EMAIL_HOST = ''
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'nayanna501@gmail.com'
+DEFAULT_FROM_EMAIL = 'nayanna501@gmail.com'"""
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'rjcsantaines@gmail.com'
+EMAIL_HOST_PASSWORD = 'IASDRJC@'
 
 LOGIN_URL = 'core_login'
 LOGIN_REDIRECT_URL = 'core_home'
@@ -132,6 +141,12 @@ MESSAGE_TAGS = {
     messages_constants.WARNING: 'warning',
     messages_constants.ERROR: 'danger',
 }
+
+PAGSEGURO_TOKEN = '7BDCEFDCEF1E4297B126417059D769BE'
+PAGSEGURO_EMAIL = 'nayanna501@gmail.com'
+PAGSEGURO_SANDBOX = True
+
+
 
 try:
     from .local_settings import *

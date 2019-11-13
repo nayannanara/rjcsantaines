@@ -9,8 +9,8 @@ def lista_inscricoes(request):
     return render(request, 'produtos/lista_inscricoes.html', context)
 
 
-def inscricao(request, slug):
-    inscricao = Inscricao.objects.get(slug=slug)
+def inscricao(request):
+    #inscricao = Inscricao.objects.get(slug=slug)
     context = {
         'inscricao': inscricao,
     }

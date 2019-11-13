@@ -1,0 +1,38 @@
+{% extends "menu.html" %}
+
+{% block title %}
+Finalização da Compra
+{% endblock %}
+
+{% block container %}
+<section class="container">
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'core_home' %}">Inicio</a></li>
+      <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'checkout:cart_item' %}">Carrinho de compras</a></li>
+        <li class="breadcrumb-item"><a href="#">Finalização da Compra</a></li>
+    <!--<li class="breadcrumb-item active" aria-current="page">Data</li>-->
+  </ol>
+</nav>
+<div class="page-header">
+    <h1>Finalização da Compra</h1>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <p>
+           Pedido #{{ order.pk }}
+        </p>
+
+    </div>
+    <div class="col-md-6 col-md-offset-2">
+        <a href="{% url 'checkout:pagseguro_view' order.pk %}" class="btn btn-success">Pagar com Pagseguro</a>
+    </div >
+
+    <div class="col-md-4 col-md-offset-2" >
+
+    </div>
+
+
+</div>
+</section>
+{% endblock %}

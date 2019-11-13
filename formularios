@@ -407,3 +407,5 @@
             </div>
         </div>
      </section>
+          <!-- <div class="card-header"><a href="{{ dados.get_absolute_url }}" style="text-decoration:none;color:#000;">
+            <h5><b><center>{{ dados.nome }}</center></b></h5></a></div> -->
